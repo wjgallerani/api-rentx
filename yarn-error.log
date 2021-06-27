@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\willi\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @babel-preset-typescript -D
+  C:\Program Files\nodejs\node.exe C:\Users\willi\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @babel/preset-typescriptbabel-plugin-module-resolver
 
 PATH: 
   C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\willi\AppData\Local\Microsoft\WindowsApps;;C:\Users\willi\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\willi\AppData\Roaming\npm
@@ -14,8 +14,8 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@babel-preset-typescript: Request "https://registry.yarnpkg.com/@babel-preset-typescript" returned a 405
-      at Request.params.callback [as _callback] (C:\Users\willi\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66997:18)
+  Error: https://registry.yarnpkg.com/@babel%2fpreset-typescriptbabel-plugin-module-resolver: Not found
+      at Request.params.callback [as _callback] (C:\Users\willi\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66988:18)
       at Request.self.callback (C:\Users\willi\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140662:22)
       at Request.emit (events.js:315:20)
       at Request.<anonymous> (C:\Users\willi\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141634:10)
@@ -33,6 +33,7 @@ npm manifest:
     "main": "index.js",
     "license": "MIT",
     "scripts": {
+      "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
       "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
       "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
       "test": "NODE_ENV=test jest --runInBand",
@@ -68,6 +69,7 @@ npm manifest:
       "@babel/plugin-proposal-class-properties": "^7.14.5",
       "@babel/plugin-proposal-decorators": "^7.14.5",
       "@babel/preset-env": "^7.14.7",
+      "@babel/preset-typescript": "^7.14.5",
       "@types/bcrypt": "^5.0.0",
       "@types/bcryptjs": "^2.4.2",
       "@types/dotenv": "^8.2.0",
@@ -249,7 +251,7 @@ Lockfile:
       browserslist "^4.14.5"
       semver "^6.3.0"
   
-  "@babel/helper-create-class-features-plugin@^7.14.5":
+  "@babel/helper-create-class-features-plugin@^7.14.5", "@babel/helper-create-class-features-plugin@^7.14.6":
     version "7.14.6"
     resolved "https://registry.yarnpkg.com/@babel/helper-create-class-features-plugin/-/helper-create-class-features-plugin-7.14.6.tgz#f114469b6c06f8b5c59c6c4e74621f5085362542"
     integrity sha512-Z6gsfGofTxH/+LQXqYEK45kxmcensbzmk/oi8DmaQytlQCgqNZt9XQF8iqlI/SeXWVjaMNxvYvzaYw+kh42mDg==
@@ -833,6 +835,13 @@ Lockfile:
     dependencies:
       "@babel/helper-plugin-utils" "^7.12.13"
   
+  "@babel/plugin-syntax-typescript@^7.14.5":
+    version "7.14.5"
+    resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-typescript/-/plugin-syntax-typescript-7.14.5.tgz#b82c6ce471b165b5ce420cf92914d6fb46225716"
+    integrity sha512-u6OXzDaIXjEstBRRoBCQ/uKQKlbuaeE5in0RvWdA4pN6AhqxTIwUsnHPU1CFZA/amYObMsuWhYfRl3Ch90HD0Q==
+    dependencies:
+      "@babel/helper-plugin-utils" "^7.14.5"
+  
   "@babel/plugin-transform-arrow-functions@^7.14.5":
     version "7.14.5"
     resolved "https://registry.yarnpkg.com/@babel/plugin-transform-arrow-functions/-/plugin-transform-arrow-functions-7.14.5.tgz#f7187d9588a768dd080bf4c9ffe117ea62f7862a"
@@ -1066,6 +1075,15 @@ Lockfile:
     dependencies:
       "@babel/helper-plugin-utils" "^7.14.5"
   
+  "@babel/plugin-transform-typescript@^7.14.5":
+    version "7.14.6"
+    resolved "https://registry.yarnpkg.com/@babel/plugin-transform-typescript/-/plugin-transform-typescript-7.14.6.tgz#6e9c2d98da2507ebe0a883b100cde3c7279df36c"
+    integrity sha512-XlTdBq7Awr4FYIzqhmYY80WN0V0azF74DMPyFqVHBvf81ZUgc4X7ZOpx6O8eLDK6iM5cCQzeyJw0ynTaefixRA==
+    dependencies:
+      "@babel/helper-create-class-features-plugin" "^7.14.6"
+      "@babel/helper-plugin-utils" "^7.14.5"
+      "@babel/plugin-syntax-typescript" "^7.14.5"
+  
   "@babel/plugin-transform-unicode-escapes@^7.14.5":
     version "7.14.5"
     resolved "https://registry.yarnpkg.com/@babel/plugin-transform-unicode-escapes/-/plugin-transform-unicode-escapes-7.14.5.tgz#9d4bd2a681e3c5d7acf4f57fa9e51175d91d0c6b"
@@ -1170,6 +1188,15 @@ Lockfile:
       "@babel/plugin-transform-dotall-regex" "^7.4.4"
       "@babel/types" "^7.4.4"
       esutils "^2.0.2"
+  
+  "@babel/preset-typescript@^7.14.5":
+    version "7.14.5"
+    resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.14.5.tgz#aa98de119cf9852b79511f19e7f44a2d379bcce0"
+    integrity sha512-u4zO6CdbRKbS9TypMqrlGH7sd2TAJppZwn3c/ZRLeO/wGsbddxgbPDUZVNrie3JWYLQ9vpineKlsrWFvO6Pwkw==
+    dependencies:
+      "@babel/helper-plugin-utils" "^7.14.5"
+      "@babel/helper-validator-option" "^7.14.5"
+      "@babel/plugin-transform-typescript" "^7.14.5"
   
   "@babel/register@^7.14.5":
     version "7.14.5"
